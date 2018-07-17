@@ -13,6 +13,7 @@ public class ItemData {
     public string descriptionItem;
     public string pathIcon;
     public int categories; //К какой категории будет относиться во вкладках в инвентаре
+    public int cost; //стоимость предмета
     public int weight; //вес предмета
     public int RestoringHP; //предметы с восстановление жизни
 
@@ -33,6 +34,7 @@ public class ItemData {
         this.descriptionItem = newItem.descriptionItem;
         this.pathIcon = newItem.pathIcon;
         this.categories = newItem.categories;
+        this.cost = newItem.cost;
         this.weight = newItem.weight;
         this.RestoringHP = newItem.RestoringHP;
     }

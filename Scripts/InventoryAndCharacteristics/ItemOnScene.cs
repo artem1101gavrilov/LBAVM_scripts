@@ -71,6 +71,7 @@ public class ItemOnScene : MonoBehaviour {
                 else if (itemItens.Name == "pathIcon" && ThisItem) itemData.pathIcon = itemItens.InnerText;
                 else if (itemItens.Name == "categories" && ThisItem) itemData.categories = int.Parse(itemItens.InnerText);
                 else if (itemItens.Name == "isstackable" && ThisItem) itemData.isStackable = int.Parse(itemItens.InnerText) == 1? true:false; //был bool.Parse
+                else if (itemItens.Name == "cost" && ThisItem) itemData.cost = int.Parse(itemItens.InnerText);
                 else if (itemItens.Name == "weight" && ThisItem) itemData.weight = int.Parse(itemItens.InnerText); 
                 else if (itemItens.Name == "RestoringHP" && ThisItem) itemData.RestoringHP = int.Parse(itemItens.InnerText); 
             }

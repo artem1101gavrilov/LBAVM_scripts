@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractCollider : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class InteractCollider : MonoBehaviour {
     GameObject dialog;
     GameObject interactePanel;
 
-    void Start () {
+    void Awake () {
         nearestObject = new Collider2D();
         nearObjectsList = new List<Collider2D>();
         hand = Instantiate(Resources.Load<GameObject>("Hand"), Vector3.zero, Quaternion.identity);
@@ -54,6 +55,12 @@ public class InteractCollider : MonoBehaviour {
                     hand.transform.localPosition = new Vector3(0, 0.2f, -1);
                     hand.SetActive(true);
                 }
+                if (nearestObject.gameObject.tag == "Door")
+                {
+                    door.transform.SetParent(nearestObject.transform);
+                    door.transform.localPosition = new Vector3(0, 0.2f, -1);
+                    door.SetActive(true);
+                }
             }
             //а если это нпс с которым говорим - то убираем панельку, чтобы не закрывала диалог
             else if ((nearestObject.gameObject.tag == "NPC") && (nearestObject.gameObject.GetComponent<NPCBehaviour>().isDialog))
@@ -73,13 +80,26 @@ public class InteractCollider : MonoBehaviour {
                     nearestObject.GetComponent<ItemOnScene>().Interacte();
                     nearObjectsList.Remove(nearestObject);
                 }
+
+                if (nearestObject.gameObject.tag == "Door")
+                {
+                    //Выдает сразу кучу ошибок при переходе на другую сцену.
+                    door.transform.SetParent(transform);
+                    door.SetActive(false);
+                    nearObjectsList.Remove(nearestObject); 
+                    GameObject.Find("Player").GetComponent<SpriteRenderer>().color = new Color(GameObject.Find("Player").GetComponent<SpriteRenderer>().color.r, GameObject.Find("Player").GetComponent<SpriteRenderer>().color.g, GameObject.Find("Player").GetComponent<SpriteRenderer>().color.b, 1.0f);
+                    DontDestroyOnLoad(GameObject.Find("UserData"));
+                    DontDestroyOnLoad(GameObject.Find("Player"));
+                    GameObject.Find("Player").transform.position = new Vector3(-2.0f, 0.0f, GameObject.Find("Player").transform.position.z);
+                    SceneManager.LoadScene(2);
+                }
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Loot")
+        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Loot" || collision.gameObject.tag == "Door")
         {
             nearObjectsList.Add(collision);
         }
@@ -87,7 +107,7 @@ public class InteractCollider : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Loot")
+        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Loot" || collision.gameObject.tag == "Door")
         {
             if (nearObjectsList.Contains(collision))
             {

@@ -268,7 +268,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.Lpocket.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.Lpocket.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.Lpocket.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.Lpocket.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -280,7 +280,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.Rpocket.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.Rpocket.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.Rpocket.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.Rpocket.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -292,7 +292,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.accessory.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.accessory.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.accessory.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.accessory.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -304,7 +304,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.corps.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.corps.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.corps.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.corps.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -316,7 +316,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.weapon.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.weapon.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.weapon.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.weapon.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -328,7 +328,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.arms.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.arms.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.arms.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.arms.weight.ToString();
             InvDescription.SetActive(true);
         }
@@ -340,7 +340,7 @@ public class CharacteristicsScript : MonoBehaviour {
         {
             InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = userData.legs.name;
             InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = userData.legs.descriptionItem;
-            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+            InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = userData.legs.cost.ToString();
             InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = userData.legs.weight.ToString();
             InvDescription.SetActive(true);
         }

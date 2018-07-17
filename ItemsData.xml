@@ -7,6 +7,7 @@
     <pathIcon>Inv/Food/Apple_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -17,6 +18,7 @@
     <pathIcon>Inv/Food/Bread_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -27,6 +29,7 @@
     <pathIcon>Inv/Food/Bread_2</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -37,6 +40,7 @@
     <pathIcon>Inv/Food/Carrot_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -47,6 +51,7 @@
     <pathIcon>Inv/Food/Chicken_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -57,6 +62,7 @@
     <pathIcon>Inv/Food/Chicken_2</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -67,6 +73,7 @@
     <pathIcon>Inv/Food/Ham_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -77,6 +84,7 @@
     <pathIcon>Inv/Food/Ham_2</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -87,6 +95,7 @@
     <pathIcon>Inv/Food/Potato_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -97,6 +106,7 @@
     <pathIcon>Inv/Food/Pumpkin_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -107,6 +117,7 @@
     <pathIcon>Inv/Food/Tomato_1</pathIcon>
 	  <categories>3</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>10</RestoringHP>
   </item>
@@ -117,6 +128,7 @@
     <pathIcon>Inv/Infusion/Blueberry_1</pathIcon>
 	  <categories>4</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -126,6 +138,7 @@
     <pathIcon>Inv/Infusion/Dogrose_1</pathIcon>
 	  <categories>4</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
     <RestoringHP>30</RestoringHP>
   </item>
@@ -136,6 +149,7 @@
     <pathIcon>Inv/Infusion/Hypericum_1</pathIcon>
 	  <categories>4</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -145,6 +159,7 @@
     <pathIcon>Inv/Infusion/Plantain_1</pathIcon>
 	  <categories>4</categories>
     <isstackable>1</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -154,6 +169,7 @@
     <pathIcon>Inv/OTHER/Coin</pathIcon>
 	  <categories>6</categories>
     <isstackable>0</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -163,6 +179,7 @@
     <pathIcon>Inv/OTHER/Sword_1</pathIcon>
 	  <categories>1</categories>
     <isstackable>0</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -172,6 +189,7 @@
     <pathIcon>Inv/OTHER/Sword_2</pathIcon>
 	  <categories>1</categories>
     <isstackable>0</isstackable>
+    <cost>1</cost>
     <weight>1</weight>
   </item>
   <item>
@@ -181,6 +199,7 @@
     <pathIcon>Inv/Food/Apple_1</pathIcon>
 	  <categories>5</categories>
     <isstackable>1</isstackable>
+    <cost>0</cost>
     <weight>1</weight>
   </item>
 </items>

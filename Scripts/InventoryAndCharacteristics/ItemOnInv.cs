@@ -31,7 +31,7 @@ public class ItemOnInv : MonoBehaviour {
     {
         InvDescription.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = itemData.name;
         InvDescription.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = itemData.descriptionItem;
-        InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = "-";
+        InvDescription.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = itemData.cost.ToString();
         InvDescription.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = itemData.weight.ToString();
         InvDescription.SetActive(true);
     }

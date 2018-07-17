@@ -83,6 +83,8 @@ public class UserData : MonoBehaviour
                 else if (itemItens.Name == "descriptionItem" && ThisItem) weapon.descriptionItem = itemItens.InnerText;
                 else if (itemItens.Name == "pathIcon" && ThisItem) weapon.pathIcon = itemItens.InnerText;
                 else if (itemItens.Name == "categories" && ThisItem) weapon.categories = int.Parse(itemItens.InnerText);
+                else if (itemItens.Name == "cost" && ThisItem) weapon.cost = int.Parse(itemItens.InnerText);
+                else if (itemItens.Name == "weight" && ThisItem) weapon.weight = int.Parse(itemItens.InnerText);
                 else if (itemItens.Name == "isstackable") weapon.isStackable = int.Parse(itemItens.InnerText) == 1 ? true : false;
             }
         }
