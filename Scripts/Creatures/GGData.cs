@@ -15,13 +15,19 @@ public class GGData : CreatureData {
     //Переменная отвечающая за состояние "Это битва?"
     public bool IsBattle;
 
+    //получение урона ГГ от врагов
     public void GetDamage(float damage)
     {
+        //так было
+        /*
         float currHP = stats.Get(Stats.Key.HP);
         if (currHP > 0)
             stats.Set(Stats.Key.HP, currHP - damage);
         else
             Dying();
+        */
+        //Проверка на жив ГГ или нет сейчас находится в скрипте PlayerScript.cs
+        stats.Set(Stats.Key.HP, stats.Get(Stats.Key.HP) - damage);
     }
     
     public void SetBattle(bool SetIsBattle)
