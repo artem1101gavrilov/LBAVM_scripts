@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC_TAVERNA : MonoBehaviour {
-    public float playTime;
+    //Скрипт создан для того, чтобы на разных столиках люди чекались в разное время
+    
+    public float playTime; //Через какое время должна начать проигрываться анимация у данного НПС
 
     private void OnEnable()
     {
@@ -13,7 +15,7 @@ public class NPC_TAVERNA : MonoBehaviour {
 
     IEnumerator SetAnim()
     {
-        yield return new WaitForSeconds(playTime);
+        yield return new WaitForSeconds(playTime); 
         GetComponent<Animator>().speed = 1;
     }
 }
