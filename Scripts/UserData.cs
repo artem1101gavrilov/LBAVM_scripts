@@ -54,9 +54,10 @@ public class UserData : MonoBehaviour
         ReadXMLforLoadWeapon();
     }
 
+    //Тестовая функция для того, чтобы на нашем ГГ был меч в руках
     private void ReadXMLforLoadWeapon()
     {
-        int randNumb = 17; //это временное
+        int randNumb = 17; //номер id  в xml файле
         //Загружаем из ресурсов наш xml файл
         TextAsset xmlAsset = Resources.Load("ItemsData") as TextAsset;
         // надо получить число элементов в root'овом теге.
@@ -88,7 +89,6 @@ public class UserData : MonoBehaviour
                 else if (itemItens.Name == "isstackable") weapon.isStackable = int.Parse(itemItens.InnerText) == 1 ? true : false;
             }
         }
-        weapon.weight = 1;
         ggData.stats.Set(Stats.Key.WEIGHT, weapon.weight);
     }
 }
