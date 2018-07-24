@@ -84,7 +84,6 @@ public class QuestsData
             }
             QuestList.Add(newQuest);
         }
-
     }
 
     //получить объект Quest по его id

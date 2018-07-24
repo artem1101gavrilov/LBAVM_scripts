@@ -80,6 +80,9 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        userData = GameObject.Find("UserData").GetComponent<UserData>();
+
+        
         shag = 0;
 
         isFirstAttack = true;
@@ -90,41 +93,17 @@ public class PlayerScript : MonoBehaviour
 
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        userData = GameObject.Find("UserData").GetComponent<UserData>();
+        
         nearestObject = new Collider2D();
         nearObjectsList = new List<Collider2D>();
         interactePanel = Instantiate(Resources.Load<GameObject>("InteractePanel"), Vector3.zero, Quaternion.identity);
         interactePanel.SetActive(false);
 
-        //Обнуление всех параметров, характеристик и тп у ГГ
-        /*currentGold = 0;     //Текущее бабло
-        currentWeight = 0;   //Насколько тяжела ноша
-        maxWeight = 0;       //А сколько сможешь поднять ты!?
-        Level = 0;
-        CurrentExperience = 0;
-        NextExperience = 100;
-        //Характеристики
-        //Основные параметры
-        strength = 0; // Сила ГГ
-        agility = 0; //Ловкость
-        endurance = 0; //Выносливость
-        intellect = 0; //Интеллект 
-                       //Дополнительные параметры
-        defense = 0;      //Защита
-        magicdefense = 0; //Магическая Защита
-        armor = 0;        //Броня
-        magicarmor = 0;   //Магическая броня
-                          //Сопротивляемость
-        resistanceToPoisons = 0; //сопротивляемость к ядам
-        resistanceToStunning = 0; // сопротивляемость к оглушению
-        resistanceToBleeding = 0; //сопротивляемость к кровотечению 
-        resistanceToMagic = 0; //сопротивляемость к магии
-
-        travelspeed = 2.0f;
-        attackSpeed = 0.0f; //скорость атаки
-        physicalDamage = 0.0f; // физический урон 
-        criticalDamage = 0.0f; // критический урон 
-        chanceCriticalDamage = 0.0f; //шанс критический урон*/ 
+        if (Application.loadedLevel == 2)
+        {
+            transform.position = userData.positionTilTrandent;
+            sprite.flipX = true;
+        }
     }
 
 

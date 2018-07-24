@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ForExample : MonoBehaviour {
-    
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        //DontDestroyOnLoad(GameObject.Find("UserData"));
+        //SceneManager.LoadScene(1);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         //дистанция до ГГ
         //10 нормальная дистанция

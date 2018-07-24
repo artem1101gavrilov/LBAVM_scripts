@@ -397,7 +397,7 @@ public class PauseGame : MonoBehaviour {
         //Возвращаем скорость игре, а потом выходим в главное меню
         ResumeButton();
         //Application.LoadLevel(0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     //Кнопка выйти из игры, находиться на Панеле паузы

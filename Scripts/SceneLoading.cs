@@ -10,17 +10,17 @@ public class SceneLoading : MonoBehaviour {
     [Header("Остальный объекты")]
     public Image LoadingImage;
     public Text LoadingText;
-    GameObject userdata;
+    //GameObject userdata;
 
 	// Use this for initialization
 	void Start () {
-        userdata = GameObject.Find("UserData");
+        //userdata = GameObject.Find("UserData");
         StartCoroutine(AsyncLoad());
 	}
-
+    
     IEnumerator AsyncLoad()
     {
-        DontDestroyOnLoad(userdata);
+        //DontDestroyOnLoad(userdata);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
         while (!operation.isDone)
         {

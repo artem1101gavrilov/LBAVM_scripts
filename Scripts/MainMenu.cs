@@ -7,14 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
     public Canvas thisMenu;
-    public GameObject ResumeButton;
-    public GameObject LoadButton;
-    public GameObject NewButton;
-    public GameObject NewButton2;
-    public GameObject PanelSettings;
+    public GameObject ResumeButton; //Кнопка "вернуться в игру"
+    public GameObject LoadButton; //Кнопка загрузки игры
+    //Кнопки "новая игра" в количестве двух штук, все из-за того, чтобы было два разных меню
+    //1. Меню без возможности загрузиться (нет файла сохранения)
+    //2. Меню с возможностью загрузить игру
+    public GameObject NewButton; //Кнопка "новая игра"
+    public GameObject NewButton2; //Кнопка "новая игра"
+    public GameObject PanelSettings; //БАЛВАНКА. Старая панель с регулированием музыки и звуков
+    public GameObject Settings;
 
-    public float music;
-    public float sound;
+    public float music; //Для БАЛВАНКИ
+    public float sound; //Для БАЛВАНКИ
 
     //public Image img1;
     //public Image img2;
@@ -53,12 +57,13 @@ public class MainMenu : MonoBehaviour {
     {
         PlayerPrefs.SetInt("loading", 1);
         //Application.LoadLevel(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void SettingGame()
     {
-        PanelSettings.SetActive(!PanelSettings.activeSelf);
+        //PanelSettings.SetActive(!PanelSettings.activeSelf);
+        Settings.SetActive(true);
     }
 
     public void ExitGame()

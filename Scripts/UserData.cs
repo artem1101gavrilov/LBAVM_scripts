@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //скрипт будет делать хз что вообще, я запуталась, нафиг он нужен, в нем нет нихрена и одновременно есть всё и все его дергают
@@ -12,6 +13,7 @@ public class UserData : MonoBehaviour
     //ГГДата наследуется от CreatureData (поэтому имеет инвентарь и статы) и добавляет от себя квесты (в скриптах квестов поменяла обращение, чтобы работало)
     //поэтому к инвентарю, квестам и статам ГГ обращаемся через userData.ggData.нужныйАттрибут()
     public GGData ggData;
+    public SettingsData settings;
 
     //Не знаю где это должно храниться. 
     //Все вещи на ерсонаже
@@ -23,11 +25,13 @@ public class UserData : MonoBehaviour
     public ItemData arms;
     public ItemData legs;
 
+    public Vector3 positionTilTrandent;
 
     private void Awake()
     {
-        Debug.Log("userdata awake()");
+        DontDestroyOnLoad(gameObject);
         ggData = new GGData();
+        settings = new SettingsData();
         ItemsDatabase.ReadFile();
 
         //тестовое TODO
@@ -52,6 +56,9 @@ public class UserData : MonoBehaviour
         legs.id = -1;
 
         ReadXMLforLoadWeapon();
+
+        positionTilTrandent = new Vector3(-12.58f, -17.63f, -1f);
+        if(Application.loadedLevel == 0) SceneManager.LoadScene(1);
     }
 
     //Тестовая функция для того, чтобы на нашем ГГ был меч в руках

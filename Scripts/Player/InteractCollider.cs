@@ -88,10 +88,20 @@ public class InteractCollider : MonoBehaviour {
                     door.SetActive(false);
                     nearObjectsList.Remove(nearestObject); 
                     //GameObject.Find("Player").GetComponent<SpriteRenderer>().color = new Color(GameObject.Find("Player").GetComponent<SpriteRenderer>().color.r, GameObject.Find("Player").GetComponent<SpriteRenderer>().color.g, GameObject.Find("Player").GetComponent<SpriteRenderer>().color.b, 1.0f);
-                    DontDestroyOnLoad(GameObject.Find("UserData"));
+                    //DontDestroyOnLoad(GameObject.Find("UserData"));
                     //DontDestroyOnLoad(GameObject.Find("Player"));
                     //GameObject.Find("Player").transform.position = new Vector3(-2.0f, 0.0f, GameObject.Find("Player").transform.position.z);
-                    SceneManager.LoadScene(2);
+                    int idscene = Application.loadedLevel;
+                    switch (idscene)
+                    {
+                        case 2:
+                            GameObject.Find("UserData").GetComponent<UserData>().positionTilTrandent = transform.position;
+                            SceneManager.LoadScene(3);
+                            break;
+                        case 3:
+                            SceneManager.LoadScene(2);
+                            break;
+                    }
                 }
             }
         }

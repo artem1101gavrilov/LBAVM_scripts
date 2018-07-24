@@ -62,6 +62,8 @@ public class NPCBehaviour : MonoBehaviour
         }
         GetNextPoint();
 
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, -2 + transform.position.y / 1000); //перенес из Update, так как по маленькой области ходят
         //StartCoroutine(NPCCoroutine());
     }
 
@@ -105,7 +107,8 @@ public class NPCBehaviour : MonoBehaviour
                     isDialog = false;
                 }
             }
-            transform.position = new Vector3(transform.position.x, transform.position.y, -2 + transform.position.y / 1000);
+            //Перенес в Старт
+            //transform.position = new Vector3(transform.position.x, transform.position.y, -2 + transform.position.y / 1000);
         }
         /*RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
 
@@ -125,11 +128,11 @@ public class NPCBehaviour : MonoBehaviour
     {
         //просто движемся до выбранной точки, если дошли - меняем точку
         Vector3 dir = currTarget - transform.position;
-        transform.Translate(dir.normalized * 0.1f * Time.deltaTime, Space.World); //было 0.5
+        transform.Translate(dir.normalized * 0.03f * Time.deltaTime, Space.World); //было 0.5
         if (Vector3.Distance(transform.position, currTarget) <= 0.3f)
         {
             timer += 1 * Time.deltaTime;
-            if (timer >= 2)
+            if (timer >= 4)
             {
                 GetNextPoint();
                 timer = 0;
