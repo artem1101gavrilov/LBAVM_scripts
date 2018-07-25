@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
             }
 
             //Используем свои карманы
-            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            else if (Input.GetKeyDown(userData.settings.keys["Lpocket"]))
             {
                 if(userData.Lpocket.id != -1)
                 {
@@ -142,7 +142,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            else if (Input.GetKeyDown(userData.settings.keys["Rpocket"]))
             {
                 if (userData.Rpocket.id != -1)
                 {
