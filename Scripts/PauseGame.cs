@@ -42,6 +42,8 @@ public class PauseGame : MonoBehaviour {
     //Для сохранения и загрузки данных
     public PlayerScript player; //Объект ГГ для сохранения и загрузки данных
    
+	UserData userData;
+	
     [System.Serializable]
     public class PlayerSave //Класс для сохранения данных персонажа
     {
@@ -83,6 +85,8 @@ public class PauseGame : MonoBehaviour {
 
 	// Use this for initialization
     void Start () {
+	    userData = GameObject.Find("UserData").GetComponent<UserData>();
+	    
         //Если в главном меню была нажата кнопка загрузки игры, то мы осуществляем загрузку
         if (PlayerPrefs.GetInt("loading") == 1)
         {
@@ -109,7 +113,7 @@ public class PauseGame : MonoBehaviour {
 	    //Любой канвас можно вывать с игры. А также с других канвасов исключая себя 
 	    //На данный момент спиок канвасов (Пауза, Инвентарь, Органайзер, Задания)
 	    //Выключаем все и устанавливаем все в false, А по нажатию на опреденную кнопку устанавливаем на труе. 
-	    if(Input.GetKeyDown(KeyCode.Escape)){
+	    if(Input.GetKeyDown(userData.settings.keys["Menu"])){
 		    isinventory = false; 
 		    isTabMenu = false; 
 		    isQuests = false;
@@ -130,7 +134,7 @@ public class PauseGame : MonoBehaviour {
 			    ResumeButton();
 		    }
 	    }
-	    if(Input.GetKeyDown(KeyCode.Tab)){
+	    if(Input.GetKeyDown(userData.settings.keys["Organizer"])){
 		    ispaused = false; 
 		    isinventory = false; 
 		    isQuests = false;
@@ -154,7 +158,7 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-	    if(Input.GetKeyDown(KeyCode.I)){
+	    if(Input.GetKeyDown(userData.settings.keys["Inventory"])){
 		    ispaused = false; 
 		    isTabMenu = false; 
 		    isQuests = false;
@@ -179,7 +183,7 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-	    if(Input.GetKeyDown(KeyCode.J)){
+	    if(Input.GetKeyDown(userData.settings.keys["Journal"])){
 		    ispaused = false; 
 		    isinventory = false; 
 		    isTabMenu = false;
@@ -203,7 +207,7 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(userData.settings.keys["Skills"]))
         {
             ispaused = false;
             isinventory = false;
@@ -231,7 +235,7 @@ public class PauseGame : MonoBehaviour {
                 thisHPBar.SetActive(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(userData.settings.keys["Map"]))
         {
             ispaused = false;
             isinventory = false;
