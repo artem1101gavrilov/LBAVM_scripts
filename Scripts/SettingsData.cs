@@ -135,7 +135,7 @@ public class SettingsData {
             keys.Add("Journal", KeyCode.J);
             keys.Add("Skills", KeyCode.K);
             keys.Add("Organizer", KeyCode.Tab);
-            keys.Add("Menu", KeyCode.Esc);
+            keys.Add("Menu", KeyCode.Escape);
             keys.Add("Lpocket", KeyCode.R);
             keys.Add("Rpocket", KeyCode.F);
 

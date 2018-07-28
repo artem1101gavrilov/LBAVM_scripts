@@ -96,7 +96,7 @@ public class PlayerScript : MonoBehaviour
             //Если нажата ЛКМ, то анимация удара
             if (Input.GetMouseButtonUp(0) && (State == GGState.IdleDown || State == GGState.IdleRight || State == GGState.IdleUp)) Attack(Input.mousePosition);
             //Если нажат пробел - по анимцию Dash
-            else if (Input.GetKeyDown(KeyCode.Space) && currentEnergy > 50)
+            else if (Input.GetKeyDown(userData.settings.keys["Roll"]) && currentEnergy > 50)
             {
                 Dash();
             }
@@ -127,17 +127,38 @@ public class PlayerScript : MonoBehaviour
             }
 
             //Если Shift + направление - бег (LeftShift)
-            else if (!IsDash && Input.GetKey(KeyCode.LeftShift) && Input.GetButton("Vertical") && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) RunDiag();
-            else if (!IsDash && Input.GetKey(KeyCode.LeftShift) && Input.GetButton("Vertical") && (currentEnergy > 10.0F)) RunUp(2 * 1.0F);
-            else if (!IsDash && Input.GetKey(KeyCode.LeftShift) && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) RunSide(2 * 1.0F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Up"]) && Input.GetKey(userData.settings.keys["Right"])) RunDiag2(true, 0.7071F, true, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Up"]) && Input.GetKey(userData.settings.keys["Left"])) RunDiag2(false, 0.7071F, true, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Right"])) RunDiag2(true, 0.7071F, false, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Left"])) RunDiag2(false, 0.7071F, false, 0.7071F);
+
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Up"])) RunUp2(true, 2*1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"])) RunUp2(false, 2*1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Right"])) RunRight2(true, 2*1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Left"])) RunRight2(false, 2*1.0f);
+
+            //else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetButton("Vertical") && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) RunDiag();
+            //else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetButton("Vertical") && (currentEnergy > 10.0F)) RunUp(2 * 1.0F);
+            //else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) RunSide(2 * 1.0F);
 
             //ХОДЬБА
             //Если нажаты две кнопки - происходит движение по диагонали и отображается анимация ходьбы в сторону.
             //Если ходьба в какую-либо сторону, то происходит движение именно туда.
             //Если нажатия кнопок нет, то происходит анимация "стоит". 
-            else if (!IsDash && Input.GetButton("Vertical") && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) WakeDiag();
-            else if (!IsDash && Input.GetButton("Vertical") && (currentEnergy > 10.0F)) WakeUp(1.0F);
-            else if (!IsDash && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) Wake(1.0F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Up"]) && Input.GetKey(userData.settings.keys["Right"])) WakeDiag2(true, 0.7071F, true, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Up"]) && Input.GetKey(userData.settings.keys["Left"])) WakeDiag2(false, 0.7071F, true, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Right"])) WakeDiag2(true, 0.7071F, false, 0.7071F);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Left"])) WakeDiag2(false, 0.7071F, false, 0.7071F);
+
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Up"])) WakeUp2(true, 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Down"])) WakeUp2(false, 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Right"])) WakeRight2(true, 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Left"])) WakeRight2(false, 1.0f);
+
+            //Старая версия ходьбы, до появления смены кнопок управления
+            /*else if (!IsDash && Input.GetButton("Vertical") && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) WakeDiag();
+            else if (!IsDash && Input.GetButton("Vertical") && (currentEnergy > 10.0F)) WakeUp(1.0F);*/
+            //else if (!IsDash && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) Wake(1.0F);
             else
             {
                 GetComponent<AudioSource>().Stop();
@@ -216,6 +237,53 @@ public class PlayerScript : MonoBehaviour
         }*/
     }
 
+    void WakeDiag2(bool right, float mnozhitel_speed, bool up, float mnozhitel_speed2)
+    {
+        WakeUp2(up, 0.7071F);
+        WakeRight2(right, 0.7071F);
+    }
+
+    void WakeRight2(bool right, float mnozhitel_speed)
+    {
+        GetComponent<AudioSource>().clip = Shagi[shag];
+        if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+        isFirstAttack = true; //Чтобы после бега/ходьбы была проиграна первая атака
+        
+        State = GGState.WalkRight;
+        direction = transform.right;
+        if (!right)
+        {
+            direction *= -1.0f;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.x * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.x * Time.deltaTime);
+        }
+        sprite.flipX = !right;
+    }
+
+    void WakeUp2(bool up, float mnozhitel_speed)
+    {
+        GetComponent<AudioSource>().clip = Shagi[shag];
+        if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+        isFirstAttack = true; //Чтобы после бега/ходьбы была проиграна первая атака
+        
+        animator.StopPlayback();
+        direction = transform.up;
+        if (up)
+        {
+            State = GGState.WalkUp;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.y * Time.deltaTime);
+        }
+        else
+        {
+            direction *= -1.0f;
+            State = GGState.WalkDown;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.y * Time.deltaTime);
+        }
+    }
+
 
     void Wake(float mnozhitel_speed)
     {
@@ -289,6 +357,53 @@ public class PlayerScript : MonoBehaviour
         //0.7071F = корень(2)/2, что есть движение на 45 градусов.
         WakeUp(0.7071F);
         Wake(0.7071F);
+    }
+
+    void RunRight2(bool right, float mnozhitel_speed)
+    {
+        isFirstAttack = true; //Чтобы после бега/ходьбы была проиграна первая атака
+
+        currentEnergy -= mnozhitel_speed == 2 ? 2 * expenseEnergy : expenseEnergy;
+        currentEnergy = currentEnergy < 0.0F ? 0.0F : currentEnergy;
+        State = GGState.RunSide;
+        direction = transform.right;
+        if (!right)
+        {
+            direction *= -1.0f;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.x * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.x * Time.deltaTime);
+        }
+        sprite.flipX = !right;
+    }
+
+    void RunUp2(bool up, float mnozhitel_speed)
+    {
+        isFirstAttack = true; //Чтобы после бега/ходьбы была проиграна первая атака
+
+        currentEnergy -= mnozhitel_speed == 2 ? 2 * expenseEnergy : expenseEnergy;
+        currentEnergy = currentEnergy < 0.0F ? 0.0F : currentEnergy;
+        animator.StopPlayback();
+        direction = transform.up;
+        if (up)
+        {
+            State = GGState.RunBack;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.y * Time.deltaTime);
+        }
+        else
+        {
+            direction *= -1.0f;
+            State = GGState.RunFront;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, mnozhitel_speed * speed.y * Time.deltaTime);
+        }
+    }
+
+    void RunDiag2(bool right, float mnozhitel_speed, bool up, float mnozhitel_speed2)
+    {
+        RunUp2(up, 2 * 0.7071F);
+        RunRight2(right, 2 * 0.7071F);
     }
 
     void RunSide(float mnozhitel_speed)

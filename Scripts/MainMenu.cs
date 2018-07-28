@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour {
     public float music; //Для БАЛВАНКИ
     public float sound; //Для БАЛВАНКИ
 
+    UserData userData;
+
     //public Image img1;
     //public Image img2;
     //public Image img3;
@@ -43,6 +45,8 @@ public class MainMenu : MonoBehaviour {
             NewButton.SetActive(false);
             NewButton2.SetActive(true);
         }
+
+        userData = GameObject.Find("UserData").GetComponent<UserData>();
     }
 
     public void StartGame()
@@ -51,6 +55,9 @@ public class MainMenu : MonoBehaviour {
         //Application.LoadLevel(1);
         //SceneManager.LoadScene(1);
         transform.GetChild(10).gameObject.SetActive(true);
+
+        userData.ggData.stats.InitializationStatsNewGame();
+        Time.timeScale = 1.0F;
     }
 
     public void LoadGame()

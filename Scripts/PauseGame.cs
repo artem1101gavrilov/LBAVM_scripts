@@ -39,6 +39,8 @@ public class PauseGame : MonoBehaviour {
     public GameObject MapCanvas;
     public GameObject SkillsCanvas;
 
+    public GameObject SettingsCanvas;
+
     //Для сохранения и загрузки данных
     public PlayerScript player; //Объект ГГ для сохранения и загрузки данных
    
@@ -134,7 +136,8 @@ public class PauseGame : MonoBehaviour {
 			    ResumeButton();
 		    }
 	    }
-	    if(Input.GetKeyDown(userData.settings.keys["Organizer"])){
+	    if(Input.GetKeyDown(userData.settings.keys["Organizer"]) && !SettingsCanvas.activeSelf)
+        {
 		    ispaused = false; 
 		    isinventory = false; 
 		    isQuests = false;
@@ -158,7 +161,8 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-	    if(Input.GetKeyDown(userData.settings.keys["Inventory"])){
+	    if(Input.GetKeyDown(userData.settings.keys["Inventory"]) && !SettingsCanvas.activeSelf)
+        {
 		    ispaused = false; 
 		    isTabMenu = false; 
 		    isQuests = false;
@@ -183,7 +187,8 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-	    if(Input.GetKeyDown(userData.settings.keys["Journal"])){
+	    if(Input.GetKeyDown(userData.settings.keys["Journal"]) && !SettingsCanvas.activeSelf)
+        {
 		    ispaused = false; 
 		    isinventory = false; 
 		    isTabMenu = false;
@@ -207,7 +212,7 @@ public class PauseGame : MonoBehaviour {
 			    thisHPBar.SetActive(true);
 		    }
 	    }
-        if (Input.GetKeyDown(userData.settings.keys["Skills"]))
+        if (Input.GetKeyDown(userData.settings.keys["Skills"]) && !SettingsCanvas.activeSelf)
         {
             ispaused = false;
             isinventory = false;
@@ -235,7 +240,7 @@ public class PauseGame : MonoBehaviour {
                 thisHPBar.SetActive(true);
             }
         }
-        if (Input.GetKeyDown(userData.settings.keys["Map"]))
+        if (Input.GetKeyDown(userData.settings.keys["Map"]) && !SettingsCanvas.activeSelf)
         {
             ispaused = false;
             isinventory = false;
@@ -287,36 +292,6 @@ public class PauseGame : MonoBehaviour {
         positionSave.x = player.transform.position.x;
         positionSave.y = player.transform.position.y;
         positionSave.z = player.transform.position.z;
-        //positionSave.currentHealth = player.currentHealth;
-        //positionSave.maxHealth = player.maxHealth;
-
-        //positionSave.maxEnergy = player.maxEnergy;        //Максимальное количество ЭНЕРГИИ
-        //positionSave.currentEnergy = player.currentEnergy;    //текущее количество ЭНЕРГИИ
-        /*positionSave.currentGold = player.currentGold;     //Текущее бабло
-        positionSave.currentWeight = player.currentWeight;   //Насколько тяжела ноша
-        positionSave.maxWeight = player.maxWeight;       //А сколько сможешь поднять ты!?
-        positionSave.Level = player.Level;
-        //Характеристики
-        //Основные параметры
-        positionSave.strength = player.strength; // Сила ГГ
-        positionSave.agility = player.agility; //Ловкость
-        positionSave.endurance = player.endurance; //Выносливость
-        positionSave.intellect = player.intellect; //Интеллект 
-                                //Дополнительные параметры
-        positionSave.defense = player.defense;      //Защита
-        positionSave.magicdefense = player.magicdefense; //Магическая Защита
-        positionSave.armor = player.armor;        //Броня
-        positionSave.magicarmor = player.magicarmor;   //Магическая броня
-                                           //Сопротивляемость
-        positionSave.resistanceToPoisons = player.resistanceToPoisons; //сопротивляемость к ядам
-        positionSave.resistanceToStunning = player.resistanceToStunning; // сопротивляемость к оглушению
-        positionSave.resistanceToBleeding = player.resistanceToBleeding; //сопротивляемость к кровотечению 
-        positionSave.resistanceToMagic = player.resistanceToMagic; //сопротивляемость к магии
-
-        positionSave.attackSpeed = player.attackSpeed; //скорость атаки
-        positionSave.physicalDamage = player.physicalDamage; // физический урон 
-        positionSave.criticalDamage = player.criticalDamage; // критический урон 
-        positionSave.chanceCriticalDamage = player.chanceCriticalDamage;*/
 
         //Если папки для сохранения нет, то создаем новую папку
         if (!Directory.Exists(Application.dataPath + "/saves")) Directory.CreateDirectory(Application.dataPath + "/saves");
@@ -342,37 +317,6 @@ public class PauseGame : MonoBehaviour {
             {
                 PlayerSave positionPlayer = (PlayerSave)bformatter.Deserialize(fs);
                 player.transform.position = new Vector3(positionPlayer.x, positionPlayer.y, positionPlayer.z);
-                //player.currentHealth = positionPlayer.currentHealth;
-                //player.maxHealth = positionPlayer.maxHealth;
-                //player.HPbar.fillAmount = player.currentHealth / player.maxHealth;
-
-                //player.maxEnergy = positionPlayer.maxEnergy;        //Максимальное количество ЭНЕРГИИ
-                //player.currentEnergy = positionPlayer.currentEnergy;    //текущее количество ЭНЕРГИИ
-                /*player.currentGold = positionPlayer.currentGold;     //Текущее бабло
-                player.currentWeight = positionPlayer.currentWeight;   //Насколько тяжела ноша
-                player.maxWeight = positionPlayer.maxWeight;       //А сколько сможешь поднять ты!?
-                player.Level = positionPlayer.Level;
-                //Характеристики
-                //Основные параметры
-                player.strength = positionPlayer.strength; // Сила ГГ
-                player.agility = positionPlayer.agility; //Ловкость
-                player.endurance = positionPlayer.endurance; //Выносливость
-                player.intellect = positionPlayer.intellect; //Интеллект 
-                                                           //Дополнительные параметры
-                player.defense = positionPlayer.defense;      //Защита
-                player.magicdefense = positionPlayer.magicdefense; //Магическая Защита
-                player.armor = positionPlayer.armor;        //Броня
-                player.magicarmor = positionPlayer.magicarmor;   //Магическая броня
-                                                               //Сопротивляемость
-                player.resistanceToPoisons = positionPlayer.resistanceToPoisons; //сопротивляемость к ядам
-                player.resistanceToStunning = positionPlayer.resistanceToStunning; // сопротивляемость к оглушению
-                player.resistanceToBleeding = positionPlayer.resistanceToBleeding; //сопротивляемость к кровотечению 
-                player.resistanceToMagic = positionPlayer.resistanceToMagic; //сопротивляемость к магии
-
-                player.attackSpeed = positionPlayer.attackSpeed; //скорость атаки
-                player.physicalDamage = positionPlayer.physicalDamage; // физический урон 
-                player.criticalDamage = positionPlayer.criticalDamage; // критический урон 
-                player.chanceCriticalDamage = positionPlayer.chanceCriticalDamage;*/
             }
             catch(System.Exception e)
             {
@@ -390,6 +334,8 @@ public class PauseGame : MonoBehaviour {
     //Кнопка настройки игры, находиться на Панеле паузы
     public void SettingsButton()
     {
+        PauseMenu.SetActive(false);
+        SettingsCanvas.SetActive(true);
         //GetComponent<AudioSource>().Play();
         //Application.LoadLevel(0);
     }

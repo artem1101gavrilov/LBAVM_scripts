@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour {
 
+    public GameObject PanelMenu;
     GameObject currentKey;
 
     private void OnEnable()
@@ -15,10 +16,9 @@ public class Settings : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Menu"]))
         {
-            if(currentKey == null) GameObject.Find("UserData").GetComponent<UserData>().settings.SaveSettings();
-            gameObject.SetActive(false);
+            BackToMenu();
         }
 	}
 
@@ -59,20 +59,28 @@ public class Settings : MonoBehaviour {
 
         //Управление
         transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Up"].ToString();
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Left"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Left"].ToString();	    
     	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Down"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Right"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Roll"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Acceleration"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(6).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Interaction"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(7).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Inventory"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(8).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Map"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(9).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Journal"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(10).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Skills"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(11).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Organizer"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(12).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Menu"].ToString();	    
-	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(13).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Lpocket"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Right"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Roll"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(5).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Acceleration"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(6).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Interaction"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(7).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Inventory"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(8).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Map"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(9).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Journal"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(10).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Skills"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(11).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Organizer"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(12).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Menu"].ToString();	    
+	    transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(13).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Lpocket"].ToString();	    
     	transform.GetChild(10).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(14).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).GetComponent<Text>().text = GameObject.Find("UserData").GetComponent<UserData>().settings.keys["Rpocket"].ToString();
+    }
+
+    public void BackToMenu()
+    {
+        if (currentKey == null) GameObject.Find("UserData").GetComponent<UserData>().settings.SaveSettings();
+        gameObject.SetActive(false);
+        PanelMenu.SetActive(true);
+        AudioListener.volume = GameObject.Find("UserData").GetComponent<UserData>().settings.totalVolume;
     }
 
     public void ChangeGame()
@@ -156,6 +164,7 @@ public class Settings : MonoBehaviour {
     public void SetTotalVolume()
     {
         GameObject.Find("UserData").GetComponent<UserData>().settings.totalVolume = transform.GetChild(9).gameObject.transform.GetChild(1).GetComponent<Slider>().value;
+        AudioListener.volume = GameObject.Find("UserData").GetComponent<UserData>().settings.totalVolume;
     }
 
     public void SetSoundEffects()
@@ -220,8 +229,23 @@ public class Settings : MonoBehaviour {
     {
         //GameObject.Find("UserData").GetComponent<UserData>().settings.KeyUp = KeyCode.X;
         //UpdateSettings();
-        clicked.transform.GetChild(0).GetComponent<Text>().text = "Введите кнопку";
-        currentKey = clicked;
+        if (currentKey == null)
+        {
+            clicked.transform.GetChild(0).GetComponent<Text>().text = "Введите кнопку";
+            currentKey = clicked;
+        }
+    }
+
+    private bool DictionaryIteratorKey<K, V>(Dictionary<K, V> myList, V Button)
+    {
+        Debug.Log(Button.ToString());
+        foreach (KeyValuePair<K, V> kvp in myList)
+        {
+            string l = string.Format("{0}", kvp.Value);
+            Debug.Log(l);
+            if (l == Button.ToString()) return false;
+        }
+        return true;
     }
 
     public void OnGUI()
@@ -229,11 +253,24 @@ public class Settings : MonoBehaviour {
         if(currentKey != null)
         {
             Event e = Event.current;
-            if (e.isKey)
+            if (e.isKey && e.keyCode.ToString() != "None")
             {
-                currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
-                GameObject.Find("UserData").GetComponent<UserData>().settings.keys[currentKey.name] = e.keyCode;
-                currentKey = null;
+                //Если эта таже самая кнопка, которую хотели поменять, то просто возвращаем ее
+                if(GameObject.Find("UserData").GetComponent<UserData>().settings.keys[currentKey.name] == e.keyCode)
+                {
+                    currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
+                    GameObject.Find("UserData").GetComponent<UserData>().settings.keys[currentKey.name] = e.keyCode;
+                    currentKey = null;
+                    return;
+                }
+                //Нужна проверка, есть ли уже есть такая кнопка, то не менять 
+                //Если кнопка есть, то не поменяет, если нет, то поменяет
+                if(DictionaryIteratorKey<string, KeyCode>(GameObject.Find("UserData").GetComponent<UserData>().settings.keys, e.keyCode))
+                {
+                    currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
+                    GameObject.Find("UserData").GetComponent<UserData>().settings.keys[currentKey.name] = e.keyCode;
+                    currentKey = null;
+                }
             }
         }
     }

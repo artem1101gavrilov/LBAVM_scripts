@@ -12,6 +12,7 @@ public class InteractCollider : MonoBehaviour {
     GameObject door;
     GameObject dialog;
     GameObject interactePanel;
+    private UserData userData;
 
     void Awake () {
         nearestObject = new Collider2D();
@@ -24,6 +25,8 @@ public class InteractCollider : MonoBehaviour {
         dialog.SetActive(false);
         //interactePanel = Instantiate(Resources.Load<GameObject>("InteractePanel"), Vector3.zero, Quaternion.identity);
         //interactePanel.SetActive(false);
+
+        userData = GameObject.Find("UserData").GetComponent<UserData>();
     }
 	
 	void Update () {
@@ -66,7 +69,7 @@ public class InteractCollider : MonoBehaviour {
             else if ((nearestObject.gameObject.tag == "NPC") && (nearestObject.gameObject.GetComponent<NPCBehaviour>().isDialog))
                 dialog.SetActive(false);
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(userData.settings.keys["Interaction"]))
             {
                 if (nearestObject.gameObject.tag == "NPC")
                 {

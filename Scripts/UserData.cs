@@ -58,7 +58,8 @@ public class UserData : MonoBehaviour
         ReadXMLforLoadWeapon();
 
         positionTilTrandent = new Vector3(-12.58f, -17.63f, -1f);
-        if(Application.loadedLevel == 0) SceneManager.LoadScene(1);
+        AudioListener.volume = settings.totalVolume;
+        if (Application.loadedLevel == 0) SceneManager.LoadScene(1);
     }
 
     //Тестовая функция для того, чтобы на нашем ГГ был меч в руках

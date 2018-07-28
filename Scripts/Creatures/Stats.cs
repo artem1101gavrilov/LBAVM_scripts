@@ -24,6 +24,29 @@ public class Stats {
     {
         //хранилище статов - ключ-название и значение (float)
         stats = new Dictionary<Key, float>(); //ВОПРОС: Нужно ли было 20 в скобках?
+        InitializationStats();
+    }
+
+    public void Set(Key key, float value)
+    {
+        stats[key] = value;
+    }
+
+    public float Get(Key key)
+    {
+        float result = 0.0f;
+
+        if (stats.ContainsKey(key))
+        {
+            result = stats[key];
+        }
+
+        return result;
+    }
+
+    //Инициализация всех параметров 
+    private void InitializationStats()
+    {
         stats.Add(Key.LEVEL, 1);
         stats.Add(Key.GOLD, 0);
         stats.Add(Key.WEIGHT, 0);
@@ -63,21 +86,45 @@ public class Stats {
         stats.Add(Key.SPEED, 1);
     }
 
-    public void Set(Key key, float value)
+    //Инициализуем Статы на начальные значени для новой игры
+    public void InitializationStatsNewGame()
     {
-        stats[key] = value;
+        Set(Key.LEVEL, 1);
+        Set(Key.GOLD, 0);
+        Set(Key.WEIGHT, 0);
+        Set(Key.MAX_WEIGHT, 100);
+        Set(Key.CURRENT_EXPERIENCE, 0);
+        Set(Key.NEXT_EXPERIENCE, 100);
+
+        Set(Key.STRENGTH, 1);
+        Set(Key.AGILITY, 1);
+        Set(Key.ENDURANCE, 1);
+        Set(Key.INTELLECT, 1);
+
+        Set(Key.DEFENSE, 1);
+        Set(Key.MAGICDEFENSE, 1);
+        Set(Key.ARMOR, 1);
+        Set(Key.MAGICARMOR, 1);
+
+        Set(Key.RESISTANCETO_POISONS, 1);
+        Set(Key.RESISTANCETO_STUNNING, 1);
+        Set(Key.RESISTANCETO_BLEEDING, 1);
+        Set(Key.RESISTANCETO_MAGIC, 1);
+
+        Set(Key.ATTACKSPEED, 1);
+        Set(Key.PHYSICALDAMAGE, 1);
+        Set(Key.CRITICALDAMAGE, 1);
+        Set(Key.CHANCECRITICALDAMAGE, 1);
+
+        Set(Key.ATTACK, 25);
+        Set(Key.HP, 100);
+        Set(Key.MAX_HP, 100);
+        Set(Key.ENERGY, 100);
+        Set(Key.MAX_ENERGY, 100);
+        Set(Key.RESTORING_ENERGY, 1);
+        Set(Key.EXPENSE_ENERGY, 0.2f);
+        Set(Key.DEFENCE, 10);
+        Set(Key.REGEN_ENERGY, 20);
+        Set(Key.SPEED, 1);
     }
-
-    public float Get(Key key)
-    {
-        float result = 0.0f;
-
-        if (stats.ContainsKey(key))
-        {
-            result = stats[key];
-        }
-
-        return result;
-    }
-
 }

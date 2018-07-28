@@ -118,21 +118,21 @@ public class EnemyBehaviour : MonoBehaviour {
             if (b >= -45 && b <= 45)
             {
                 sprite.flipX = false;
-                State = EnemyState.EnemyStateAttackRight;
+                if(State != EnemyState.EnemyStateAttackRight) State = EnemyState.EnemyStateAttackRight;
 
             }
             else if (b >= 45 && b <= 135)
             {
-                State = EnemyState.EnemyStateAttackBack;
+                if (State != EnemyState.EnemyStateAttackBack) State = EnemyState.EnemyStateAttackBack;
             }
             else if (b >= 135 || b <= -135)
             {
                 sprite.flipX = false;
-                State = EnemyState.EnemyStateAttackLeft;
+                if (State != EnemyState.EnemyStateAttackLeft) State = EnemyState.EnemyStateAttackLeft;
             }
             else if (b >= -135 && b <= -45)
             {
-                State = EnemyState.EnemyStateAttackFront;
+                if (State != EnemyState.EnemyStateAttackFront) State = EnemyState.EnemyStateAttackFront;
             }
             Attack();
         }
@@ -144,22 +144,22 @@ public class EnemyBehaviour : MonoBehaviour {
             if (b >= -45 && b <= 45)
             {
                 sprite.flipX = false;
-                State = EnemyState.EnemyStateRight;
+                if (State != EnemyState.EnemyStateRight) State = EnemyState.EnemyStateRight;
             }
             else if (b >= 45 && b <= 135)
             {
-                State = EnemyState.EnemyStateBack;
+                if (State != EnemyState.EnemyStateBack) State = EnemyState.EnemyStateBack;
             }
             else if (b >= 135 || b <= -135)
             {
                 sprite.flipX = true;
-                State = EnemyState.EnemyStateRight;
+                if (State != EnemyState.EnemyStateRight) State = EnemyState.EnemyStateRight;
             }
             else if (b >= -135 && b <= -45)
             {
-                State = EnemyState.EnemyStateFront;
+                if (State != EnemyState.EnemyStateFront) State = EnemyState.EnemyStateFront;
             }
-            transform.Translate(dir.normalized * enemyData.stats.Get(Stats.Key.SPEED) * Time.deltaTime, Space.World);
+            transform.Translate(dir.normalized * enemyData.stats.Get(Stats.Key.SPEED) * Time.deltaTime/2, Space.World);
         }
 
     }
@@ -183,7 +183,7 @@ public class EnemyBehaviour : MonoBehaviour {
         //просто движемся до выбранной точки, если дошли - меняем точку
         Vector3 dir = currTarget - transform.position;
         float x = currTarget.x - transform.position.x;
-        float b = Mathf.Atan2((GGPos.y - transform.position.y), x);
+        float b = Mathf.Atan2((currTarget.y - transform.position.y), x);
         b = b * 180 / 3.14f;
 
         if (b >= -45 && b <= 45)
@@ -193,7 +193,7 @@ public class EnemyBehaviour : MonoBehaviour {
         }
         else if (b >= 45 && b <= 135)
         {
-            State = EnemyState.EnemyStateBack;
+             State = EnemyState.EnemyStateBack;
         }
         else if (b >= 135 || b <= -135)
         {
@@ -204,7 +204,7 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             State = EnemyState.EnemyStateFront;
         }
-        transform.Translate(dir.normalized * enemyData.stats.Get(Stats.Key.SPEED) * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * enemyData.stats.Get(Stats.Key.SPEED) * Time.deltaTime / 2, Space.World);
         if (Vector3.Distance(transform.position, currTarget) <= 0.3f)
         {
             GetNextPoint();

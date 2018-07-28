@@ -129,8 +129,8 @@ public class NPCBehaviour : MonoBehaviour
         //просто движемся до выбранной точки, если дошли - меняем точку
         Vector3 dir = currTarget - transform.position;
         transform.Translate(dir.normalized * 0.03f * Time.deltaTime, Space.World); //было 0.5
-        if (Vector3.Distance(transform.position, currTarget) <= 0.3f)
-        {
+        //if (Vector3.Distance(transform.position, currTarget) <= 0.3f)
+        //{
             timer += 1 * Time.deltaTime;
             if (timer >= 4)
             {
@@ -138,7 +138,7 @@ public class NPCBehaviour : MonoBehaviour
                 timer = 0;
             }
 
-        }
+        //}
     }
 
     private void GetNextPoint()
