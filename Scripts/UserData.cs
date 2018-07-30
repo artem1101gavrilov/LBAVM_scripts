@@ -21,7 +21,7 @@ public class UserData : MonoBehaviour
     public SettingsData settings;
 
     //Не знаю где это должно храниться. 
-    //Все вещи на ерсонаже
+    //Все вещи на персонаже
     public ItemData Lpocket;
     public ItemData Rpocket;
     public ItemData accessory;
@@ -30,14 +30,14 @@ public class UserData : MonoBehaviour
     public ItemData arms;
     public ItemData legs;
 
-    public Vector3 positionTilTrandent;
+    public Vector3 positionTilTrandent; //Позиция ГГ на сцене города
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); //Не удаляем объект, чтобы везде был один и тот же объект
         ggData = new GGData();
         settings = new SettingsData();
-        //ItemsDatabase.ReadFile();
+        //ItemsDatabase.ReadFile(); //Надо отладить и использовать везде. Возможно, создать лист предметов в UserData.
 
         //тестовое TODO
         ggData.stats.Set(Stats.Key.HP, 100);
@@ -64,7 +64,7 @@ public class UserData : MonoBehaviour
 
         positionTilTrandent = new Vector3(-12.58f, -17.63f, -1f);
         AudioListener.volume = settings.totalVolume;
-        if (Application.loadedLevel == 0) SceneManager.LoadScene(1);
+        if (Application.loadedLevel == 0) SceneManager.LoadScene(1); //Чтобы во время тестирования отдельных сцен не загрузалась игра в нормальное режиме
     }
 
     //Тестовая функция для того, чтобы на нашем ГГ был меч в руках
@@ -162,6 +162,7 @@ public class UserData : MonoBehaviour
 
 }
 
+//Класс сохранения/загрузки игры 
 [Serializable]
 public class SerializeUserData
 {
