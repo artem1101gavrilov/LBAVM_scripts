@@ -81,8 +81,8 @@ public class QuestsData
                 else if (itemItens.Name == "title") newQuest.title = itemItens.InnerText;
                 else if (itemItens.Name == "description") newQuest.description = itemItens.InnerText;
                 else if (itemItens.Name == "toDo") newQuest.toDo = itemItens.InnerText;
-                else if (itemItens.Name == "toDo") newQuest.CurrentNumber = int.Parse(itemItens.InnerText);
-                else if (itemItens.Name == "toDo") newQuest.FiniteNumber = int.Parse(itemItens.InnerText);
+                else if (itemItens.Name == "CurrentNumber") newQuest.CurrentNumber = int.Parse(itemItens.InnerText);
+                else if (itemItens.Name == "FiniteNumber") newQuest.FiniteNumber = int.Parse(itemItens.InnerText);
             }
             QuestList.Add(newQuest);
         }
