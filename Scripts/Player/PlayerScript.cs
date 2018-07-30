@@ -94,7 +94,11 @@ public class PlayerScript : MonoBehaviour
             //Таймер для анимации кувырок
             timer += 1 * Time.deltaTime;
             //Если нажата ЛКМ, то анимация удара
-            if (Input.GetMouseButtonUp(0) && (State == GGState.IdleDown || State == GGState.IdleRight || State == GGState.IdleUp)) Attack(Input.mousePosition);
+            if (Input.GetMouseButtonUp(0) && (State == GGState.IdleDown || State == GGState.IdleRight || State == GGState.IdleUp))
+            {
+                timer = 0;
+                Attack(Input.mousePosition);
+            }
             //Если нажат пробел - по анимцию Dash
             else if (Input.GetKeyDown(userData.settings.keys["Roll"]) && currentEnergy > 50)
             {
@@ -104,7 +108,7 @@ public class PlayerScript : MonoBehaviour
             //Используем свои карманы
             else if (Input.GetKeyDown(userData.settings.keys["Lpocket"]))
             {
-                if(userData.Lpocket.id != -1)
+                if (userData.Lpocket.id != -1)
                 {
                     userData.ggData.stats.Set(Stats.Key.HP, userData.ggData.stats.Get(Stats.Key.HP) + userData.Lpocket.RestoringHP);
                     userData.Lpocket.Stackable--;
@@ -112,7 +116,7 @@ public class PlayerScript : MonoBehaviour
                     GameObject.Find("HP_Bar").GetComponent<ChangeHPBar>().FunctionOnEnable();
                     userData.ggData.stats.Set(Stats.Key.WEIGHT, userData.ggData.stats.Get(Stats.Key.WEIGHT) - userData.Lpocket.weight);
                 }
-                
+
             }
             else if (Input.GetKeyDown(userData.settings.keys["Rpocket"]))
             {
@@ -132,10 +136,10 @@ public class PlayerScript : MonoBehaviour
             else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Right"])) RunDiag2(true, 0.7071F, false, 0.7071F);
             else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"]) && Input.GetKey(userData.settings.keys["Left"])) RunDiag2(false, 0.7071F, false, 0.7071F);
 
-            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Up"])) RunUp2(true, 2*1.0f);
-            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"])) RunUp2(false, 2*1.0f);
-            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Right"])) RunRight2(true, 2*1.0f);
-            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Left"])) RunRight2(false, 2*1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Up"])) RunUp2(true, 2 * 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Down"])) RunUp2(false, 2 * 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Right"])) RunRight2(true, 2 * 1.0f);
+            else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetKey(userData.settings.keys["Left"])) RunRight2(false, 2 * 1.0f);
 
             //else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetButton("Vertical") && Input.GetButton("Horizontal") && (currentEnergy > 10.0F)) RunDiag();
             //else if (!IsDash && Input.GetKey(userData.settings.keys["Acceleration"]) && Input.GetButton("Vertical") && (currentEnergy > 10.0F)) RunUp(2 * 1.0F);
@@ -166,21 +170,37 @@ public class PlayerScript : MonoBehaviour
                 currentEnergy += restoringEnergy;
                 currentEnergy = currentEnergy > 100.0F ? 100.0F : currentEnergy;
                 userData.ggData.stats.Set(Stats.Key.ENERGY, currentEnergy);
-                if (State == (GGState)3 || State == (GGState)8 || State == (GGState)14 || State == (GGState)15 || State == (GGState)21 || State == (GGState)22 || (State == (GGState)11 && timer >= 0.5f))
+                if (State == (GGState)3 || State == (GGState)8 || (State == (GGState)11 && timer >= 0.5f))
                 {
                     State = GGState.IdleRight;
-                    if (State == (GGState)14 || State == (GGState)21) sprite.flipX = true;
                     IsDash = false;
                 }
-                else if (State == (GGState)4 || State == (GGState)6 || State == (GGState)12 || State == (GGState)19  || (State == (GGState)9 && timer >= 0.5f))
+                else if (State == (GGState)4 || State == (GGState)6 || (State == (GGState)9 && timer >= 0.5f))
                 {
                     State = GGState.IdleUp;
                     IsDash = false;
                 }
-                else if (State == (GGState)5 || State == (GGState)7 || State == (GGState)13 || State == (GGState)20 || (State == (GGState)10 && timer >= 0.5f))
+                else if (State == (GGState)5 || State == (GGState)7  || (State == (GGState)10 && timer >= 0.5f))
                 {
                     State = GGState.IdleDown;
                     IsDash = false;
+                }
+                else if ((State == GGState.Attack1Left || State == GGState.Attack2Left) && timer > 0.5f)
+                {
+                    sprite.flipX = true;
+                    State = GGState.IdleRight;
+                }
+                else if ((State == GGState.Attack1Right || State == GGState.Attack2Right) && timer > 0.5f)
+                {
+                    State = GGState.IdleRight;
+                }
+                else if ((State == GGState.Attack1Back || State == GGState.Attack2Back) && timer > 0.5f)
+                {
+                    State = GGState.IdleUp;
+                }
+                else if ((State == GGState.Attack1Front || State == GGState.Attack2Front) && timer > 0.5f)
+                {
+                    State = GGState.IdleDown;
                 }
             }
             if (IsDash)

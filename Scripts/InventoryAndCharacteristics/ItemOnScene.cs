@@ -117,7 +117,7 @@ public class ItemOnScene : MonoBehaviour {
         if(itemData.id == 19)
         {
             //Проверяем, если собрали все 10 яблок
-            for (int i = 0; i < userData.ggData.inventory.items.Count; i++)
+            /*for (int i = 0; i < userData.ggData.inventory.items.Count; i++)
             {
                 if(userData.ggData.inventory.items[i].id == 19)
                 {
@@ -126,7 +126,9 @@ public class ItemOnScene : MonoBehaviour {
                         userData.ggData.quests.QuestList[0].status = Quest.Status.DONE;
                     }
                 }
-            }
+            }*/
+            userData.ggData.quests.QuestList[0].CurrentNumber++;
+            if(userData.ggData.quests.QuestList[0].CurrentNumber == 10) userData.ggData.quests.QuestList[0].status = Quest.Status.DONE;
             GameObject.Find("HP_Bar").GetComponent<ChangeHPBar>().FunctionOnEnable();
         }
 

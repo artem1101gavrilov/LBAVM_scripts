@@ -51,20 +51,23 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        PlayerPrefs.SetInt("loading", 0);
+        //PlayerPrefs.SetInt("loading", 0);
         //Application.LoadLevel(1);
         //SceneManager.LoadScene(1);
-        transform.GetChild(10).gameObject.SetActive(true);
 
         userData.ggData.stats.InitializationStatsNewGame();
         Time.timeScale = 1.0F;
+        transform.GetChild(10).gameObject.GetComponent<SceneLoading>().sceneID = 2;
+        transform.GetChild(10).gameObject.SetActive(true);
     }
 
     public void LoadGame()
     {
-        PlayerPrefs.SetInt("loading", 1);
+        //PlayerPrefs.SetInt("loading", 1);
         //Application.LoadLevel(1);
-        SceneManager.LoadScene(2);
+        Time.timeScale = 1.0F;
+        userData.LoadGame();
+        SceneManager.LoadScene(userData.SceneID);
     }
 
     public void SettingGame()

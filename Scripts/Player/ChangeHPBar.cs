@@ -90,15 +90,19 @@ public class ChangeHPBar : MonoBehaviour {
                     transform.GetChild(3).GetChild(1).GetComponent<Text>().text = userData.ggData.quests.QuestList[userData.ggData.quests.currentQuestID - 1].title;
                     if (userData.ggData.quests.currentQuestID == 1)
                     {
-                        int countForQuest = 0; // сколько яблок собрано в квесте
+                        /*int countForQuest = 0; // сколько яблок собрано в квесте
                         for (int i = 0; i < userData.ggData.inventory.items.Count; i++)
                         {
                             if (userData.ggData.inventory.items[i].id == 19)
                             {
                                 countForQuest = userData.ggData.inventory.items[i].Stackable;
                             }
-                        }
-                        transform.GetChild(3).GetChild(3).GetComponent<Text>().text = countForQuest.ToString();
+                        }*/
+                        transform.GetChild(3).GetChild(3).GetComponent<Text>().text = userData.ggData.quests.QuestList[0].CurrentNumber.ToString();
+                    }
+                    else if (userData.ggData.quests.currentQuestID == 2)
+                    {
+                        transform.GetChild(3).GetChild(3).GetComponent<Text>().text = userData.ggData.quests.QuestList[1].CurrentNumber.ToString();
                     }
                     transform.GetChild(3).GetChild(3).GetComponent<Text>().text += userData.ggData.quests.QuestList[userData.ggData.quests.currentQuestID - 1].toDo;
                 }

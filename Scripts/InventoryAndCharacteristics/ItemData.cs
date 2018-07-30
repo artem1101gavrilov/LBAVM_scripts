@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum TypeOfItem { Everything, Weapon, Armor, Food, Other, QuestItems };
 
+[Serializable]
 public class ItemData {
     public int id;
     public string name;

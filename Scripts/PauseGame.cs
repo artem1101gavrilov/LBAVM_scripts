@@ -90,11 +90,11 @@ public class PauseGame : MonoBehaviour {
 	    userData = GameObject.Find("UserData").GetComponent<UserData>();
 	    
         //Если в главном меню была нажата кнопка загрузки игры, то мы осуществляем загрузку
-        if (PlayerPrefs.GetInt("loading") == 1)
-        {
-            LoadButton();
-            PlayerPrefs.SetInt("loading", 0); //на всякий случай.
-        }
+        //if (PlayerPrefs.GetInt("loading") == 1)
+        //{
+        //    LoadButton();
+        //    PlayerPrefs.SetInt("loading", 0); //на всякий случай.
+        //}
         //пауза и инвентарь изначально не показываются
         ispaused = false;
         isinventory = false;
@@ -286,6 +286,10 @@ public class PauseGame : MonoBehaviour {
     //Кнопка сохранить игру, находиться на Панеле паузы
     public void SaveButton()
     {
+        userData.positionTilTrandent.x = player.transform.position.x;
+        userData.positionTilTrandent.y = player.transform.position.y;
+        userData.SaveGame();
+        /*
         //GetComponent<AudioSource>().Play();
         //Передаем необходимые параметры классу сохранения
         PlayerSave positionSave = new PlayerSave();
@@ -299,7 +303,7 @@ public class PauseGame : MonoBehaviour {
         FileStream fs = new FileStream(Application.dataPath + "/saves/save1.sv", FileMode.Create);
         BinaryFormatter bformatter = new BinaryFormatter();
         bformatter.Serialize(fs, positionSave);
-        fs.Close();
+        fs.Close();*/
         //Возвращаем движение игре
         ResumeButton();
     }
@@ -307,9 +311,11 @@ public class PauseGame : MonoBehaviour {
     //Кнопка загрузить игру, находиться на Панеле паузы
     public void LoadButton()
     {
+        userData.LoadGame();
+        SceneManager.LoadScene(userData.SceneID);
         //GetComponent<AudioSource>().Play();
         //Проверяем, существует ли файл, из которого надо загрузить
-        if (File.Exists(Application.dataPath + "/saves/save1.sv"))
+        /*if (File.Exists(Application.dataPath + "/saves/save1.sv"))
         {
             FileStream fs = new FileStream(Application.dataPath + "/saves/save1.sv", FileMode.Open);
             BinaryFormatter bformatter = new BinaryFormatter();
@@ -326,7 +332,7 @@ public class PauseGame : MonoBehaviour {
             {
                 fs.Close();
             }
-        }
+        }*/
         //Возвращаем движение игре
         ResumeButton();
     }

@@ -3,18 +3,22 @@
   <quest>
     <id>1</id>
     <status>1</status>
-    <name>Квест 1</name>
+    <name>Квест про яблоки</name>
     <title>Старые яблоки</title>
     <description>Нука соберика</description>
     <toDo> / 10 собрано яблок</toDo>
+    <CurrentNumber>0</CurrentNumber>
+    <FiniteNumber>10</FiniteNumber>
   </quest>
   <quest>
 	  <id>2</id>
-    <status>0</status>
-    <name>Квест 2</name>
-	  <title>ЛАЛАЛА</title>
-	  <description>ЛАЛАЛА</description>
-	  <toDo>ЛАЛАЛА</toDo>
+    <status>1</status>
+    <name>Квест убийств</name>
+	  <title>Убивать!</title>
+	  <description>По городу шастают всякие с ножиками. Надо навалять.</description>
+	  <toDo> / 5 убито</toDo>
+    <CurrentNumber>0</CurrentNumber>
+    <FiniteNumber>5</FiniteNumber>
   </quest>
   <quest>
 	  <id>3</id>

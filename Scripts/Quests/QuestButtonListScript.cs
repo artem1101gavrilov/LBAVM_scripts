@@ -91,7 +91,7 @@ public class QuestButtonListScript : MonoBehaviour {
         Quest qData = Quests.GetQuestData(id);
         transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = qData.title;
         transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = qData.description;
-        if (userData.ggData.quests.currentQuestID == 1)
+        /*if (userData.ggData.quests.currentQuestID == 1)
         {
             int countForQuest = 0; // сколько яблок собрано в квесте
             for (int i = 0; i < userData.ggData.inventory.items.Count; i++)
@@ -102,7 +102,8 @@ public class QuestButtonListScript : MonoBehaviour {
                 }
             }
             transform.GetChild(4).GetComponent<UnityEngine.UI.Text>().text = countForQuest.ToString();
-        }
+        }*/
+        transform.GetChild(4).GetComponent<UnityEngine.UI.Text>().text = qData.CurrentNumber.ToString();
         transform.GetChild(4).GetComponent<UnityEngine.UI.Text>().text += qData.toDo;
         //и меняем флажок активного квеста
         if (currentQuestButton) currentQuestButton.GetComponent<QuestsButton>().SetFlag(false);
