@@ -128,7 +128,10 @@ public class ItemOnScene : MonoBehaviour {
                 }
             }*/
             userData.ggData.quests.QuestList[0].CurrentNumber++;
-            if(userData.ggData.quests.QuestList[0].CurrentNumber == 10) userData.ggData.quests.QuestList[0].status = Quest.Status.DONE;
+            if(userData.ggData.quests.QuestList[0].CurrentNumber >= 10){ 
+                userData.ggData.quests.QuestList[0].status = Quest.Status.DONE;
+                userData.ggData.quests.QuestList[0].CurrentNumber = 10;
+            }
             GameObject.Find("HP_Bar").GetComponent<ChangeHPBar>().FunctionOnEnable();
         }
 
