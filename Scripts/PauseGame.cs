@@ -46,55 +46,10 @@ public class PauseGame : MonoBehaviour {
    
 	UserData userData;
 	
-    [System.Serializable]
-    public class PlayerSave //Класс для сохранения данных персонажа
-    {
-        //координаты
-        public float x;
-        public float y;
-        public float z;
-        //Все основные параметры нашего персонажа
-        public float maxHealth;        //Максимальное количество жизней
-        public float currentHealth;     //текущее количество жизней
-        public float maxEnergy;        //Максимальное количество ЭНЕРГИИ
-        public float currentEnergy;    //текущее количество ЭНЕРГИИ
-        public int currentGold;     //Текущее бабло
-        public int currentWeight;   //Насколько тяжела ноша
-        public int maxWeight;       //А сколько сможешь поднять ты!?
-        public int Level;
-        //Характеристики
-        //Основные параметры
-        public int strength; // Сила ГГ
-        public int agility; //Ловкость
-        public int endurance; //Выносливость
-        public int intellect; //Интеллект 
-                              //Дополнительные параметры
-        public int defense;      //Защита
-        public int magicdefense; //Магическая Защита
-        public int armor;        //Броня
-        public int magicarmor;   //Магическая броня
-                                 //Сопротивляемость
-        public int resistanceToPoisons; //сопротивляемость к ядам
-        public int resistanceToStunning; // сопротивляемость к оглушению
-        public int resistanceToBleeding; //сопротивляемость к кровотечению 
-        public int resistanceToMagic; //сопротивляемость к магии
-
-        public float attackSpeed; //скорость атаки
-        public float physicalDamage; // физический урон 
-        public float criticalDamage; // критический урон 
-        public float chanceCriticalDamage; //шанс критический урон 
-    }
 
 	// Use this for initialization
     void Start () {
 	    userData = GameObject.Find("UserData").GetComponent<UserData>();
-	    
-        //Если в главном меню была нажата кнопка загрузки игры, то мы осуществляем загрузку
-        //if (PlayerPrefs.GetInt("loading") == 1)
-        //{
-        //    LoadButton();
-        //    PlayerPrefs.SetInt("loading", 0); //на всякий случай.
-        //}
         //пауза и инвентарь изначально не показываются
         ispaused = false;
         isinventory = false;
@@ -289,21 +244,7 @@ public class PauseGame : MonoBehaviour {
         userData.positionTilTrandent.x = player.transform.position.x;
         userData.positionTilTrandent.y = player.transform.position.y;
         userData.SaveGame();
-        /*
         //GetComponent<AudioSource>().Play();
-        //Передаем необходимые параметры классу сохранения
-        PlayerSave positionSave = new PlayerSave();
-        positionSave.x = player.transform.position.x;
-        positionSave.y = player.transform.position.y;
-        positionSave.z = player.transform.position.z;
-
-        //Если папки для сохранения нет, то создаем новую папку
-        if (!Directory.Exists(Application.dataPath + "/saves")) Directory.CreateDirectory(Application.dataPath + "/saves");
-        //Создаем новый файл (или перезаписываем старый)
-        FileStream fs = new FileStream(Application.dataPath + "/saves/save1.sv", FileMode.Create);
-        BinaryFormatter bformatter = new BinaryFormatter();
-        bformatter.Serialize(fs, positionSave);
-        fs.Close();*/
         //Возвращаем движение игре
         ResumeButton();
     }
@@ -314,25 +255,6 @@ public class PauseGame : MonoBehaviour {
         userData.LoadGame();
         SceneManager.LoadScene(userData.SceneID);
         //GetComponent<AudioSource>().Play();
-        //Проверяем, существует ли файл, из которого надо загрузить
-        /*if (File.Exists(Application.dataPath + "/saves/save1.sv"))
-        {
-            FileStream fs = new FileStream(Application.dataPath + "/saves/save1.sv", FileMode.Open);
-            BinaryFormatter bformatter = new BinaryFormatter();
-            try
-            {
-                PlayerSave positionPlayer = (PlayerSave)bformatter.Deserialize(fs);
-                player.transform.position = new Vector3(positionPlayer.x, positionPlayer.y, positionPlayer.z);
-            }
-            catch(System.Exception e)
-            {
-                Debug.Log(e.Message);
-            }
-            finally
-            {
-                fs.Close();
-            }
-        }*/
         //Возвращаем движение игре
         ResumeButton();
     }
@@ -343,7 +265,6 @@ public class PauseGame : MonoBehaviour {
         PauseMenu.SetActive(false);
         SettingsCanvas.SetActive(true);
         //GetComponent<AudioSource>().Play();
-        //Application.LoadLevel(0);
     }
 
     //Кнопка выйти в главное меню, находиться на Панеле паузы
@@ -352,7 +273,6 @@ public class PauseGame : MonoBehaviour {
         //GetComponent<AudioSource>().Play();
         //Возвращаем скорость игре, а потом выходим в главное меню
         ResumeButton();
-        //Application.LoadLevel(0);
         SceneManager.LoadScene(1);
     }
 
