@@ -292,7 +292,10 @@ public class EnemyBehaviour : MonoBehaviour {
         }
         userData.ggData.stats.Set(Stats.Key.CURRENT_EXPERIENCE, userData.ggData.stats.Get(Stats.Key.CURRENT_EXPERIENCE) + Random.Range(1, 50));
         userData.ggData.quests.QuestList[1].CurrentNumber++;
-        if (userData.ggData.quests.QuestList[1].CurrentNumber == 5) userData.ggData.quests.QuestList[1].status = Quest.Status.DONE;
+        if (userData.ggData.quests.QuestList[1].CurrentNumber >= 5){ 
+            userData.ggData.quests.QuestList[1].status = Quest.Status.DONE;
+            userData.ggData.quests.QuestList[1].CurrentNumber = 5;
+        }
         GameObject.Find("HP_Bar").GetComponent<ChangeHPBar>().FunctionOnEnable();
         timer = 0;
     }
